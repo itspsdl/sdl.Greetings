@@ -1,10 +1,10 @@
 package jp.ac.titech.itpro.sdl.greetings;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -33,12 +33,9 @@ public class MainActivity extends AppCompatActivity {
         outputView = findViewById(R.id.output_view);
         inputName = findViewById(R.id.input_name);
         Button okButton = findViewById(R.id.ok_button);
-        okButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                name = inputName.getText().toString().trim();
-                greet();
-            }
+        okButton.setOnClickListener(v -> {
+            name = inputName.getText().toString().trim();
+            greet();
         });
     }
 
@@ -75,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onSaveInstanceState(Bundle outState) {
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         Log.d(TAG, "onSaveInstanceState");
         outState.putString(KEY_NAME, name);
